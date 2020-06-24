@@ -1,6 +1,6 @@
 from distutils.core import setup, Extension
 
-module1=Extension('bcollections', sources=['bstackmodule.c'])
+module1=Extension('bcollections', sources=['bcollectionsmodule.c'])
 
 setup(
   name='BCollections',
