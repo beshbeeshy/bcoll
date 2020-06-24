@@ -48,8 +48,6 @@ static PyObject* BStack_pop(BStack *self, PyObject *args) {
   Py_DECREF(nData);
   free(bn);
   self->count--;
-  char *dd = PyBytes_AsString(PyUnicode_AsEncodedString(nData, "UTF-8", "strict"));
-  printf("%s\n", dd);
   return nData;
 }
 
