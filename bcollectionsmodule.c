@@ -42,6 +42,10 @@ static PyObject* BStack_push(BStack *self, PyObject *args) {
 }
 
 static PyObject* BStack_pop(BStack *self, PyObject *args) {
+  if(self->count == 0) {
+    PyErr_SetString(PyExc_Exception, "Stack is already empty.");
+    Py_RETURN_NONE;
+  }
   BNode *bn = self->head;
   self->head = bn->next;
   self->count--;
