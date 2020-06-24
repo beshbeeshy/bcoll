@@ -22,32 +22,31 @@ static void BStack_dealloc(BStack *self) {
   do {
     BNode *n = self->head;
     self->head = n->next;
-    Py_TYPE(self)->tp_free((PyObject *) self);
+    Py_DECREF(n->data);
+    free(n);
   } while(self->head != NULL);
   self->count = 0;
+  Py_TYPE(self)->tp_free((PyObject *) self);
 }
 
 static PyObject* BStack_push(BStack *self, PyObject *args) {
   PyObject *obj;
-  if(!PyArg_ParseTuple(args, "O", &obj)) {
-    return NULL;
-  }
+  if(!PyArg_ParseTuple(args, "O", &obj)) { return NULL; }
+  Py_INCREF(obj);
   BNode *bn = malloc(sizeof(BNode));
   bn->data = obj;
   bn->next = self->head;
   self->head = bn;
   self->count++;
-  Py_INCREF(obj);
   Py_RETURN_NONE;
 }
 
 static PyObject* BStack_pop(BStack *self, PyObject *args) {
   BNode *bn = self->head;
   self->head = bn->next;
-  PyObject *nData = bn->data;
-  Py_DECREF(nData);
-  free(bn);
   self->count--;
+  PyObject *nData = bn->data;
+  free(bn);
   return nData;
 }
 
