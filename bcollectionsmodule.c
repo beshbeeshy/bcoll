@@ -76,7 +76,7 @@ static PyTypeObject BStackType = {
 static PyModuleDef bcollectionsmodule = {
   PyModuleDef_HEAD_INIT,
   .m_name = "bcollections",
-  .m_doc = "A module implementing my own data structure module.",
+  .m_doc = "A module implementing my own data structures.",
   .m_size = -1,
 };
 
