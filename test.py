@@ -1,7 +1,7 @@
-import bcollections
+import bcoll
 
 
-s = bcollections.BStack()
+s = bcoll.BStack()
 
 s.push("Bassam")
 s.push("Mohammed")

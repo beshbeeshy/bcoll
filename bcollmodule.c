@@ -62,7 +62,7 @@ static PyMethodDef BStack_methods[] = {
 
 static PyTypeObject BStackType = {
   PyVarObject_HEAD_INIT(NULL, 0)
-  .tp_name = "bcollections.bstack",
+  .tp_name = "bcoll.bstack",
   .tp_doc = "Custom Stack",
   .tp_basicsize = sizeof(BStack),
   .tp_itemsize = 0,
@@ -73,18 +73,18 @@ static PyTypeObject BStackType = {
   .tp_methods = BStack_methods
 };
 
-static PyModuleDef bcollectionsmodule = {
+static PyModuleDef bcollmodule = {
   PyModuleDef_HEAD_INIT,
-  .m_name = "bcollections",
+  .m_name = "bcoll",
   .m_doc = "A module implementing my own data structures.",
   .m_size = -1,
 };
 
-PyMODINIT_FUNC PyInit_bcollections() {
+PyMODINIT_FUNC PyInit_bcoll() {
   if(PyType_Ready(&BStackType) < 0) {
     return NULL;
   }
-  PyObject *m = PyModule_Create(&bcollectionsmodule);
+  PyObject *m = PyModule_Create(&bcollmodule);
   if(m == NULL) {
     return NULL;
   }
